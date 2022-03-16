@@ -17,3 +17,5 @@ CREATE src/app/pwd-control/pwd-control.component.spec.ts (655 bytes)
 CREATE src/app/pwd-control/pwd-control.component.ts (294 bytes)
 
 
+
+npm install pwd-sdk
