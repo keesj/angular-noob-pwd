@@ -27,14 +27,18 @@ export class PwdControlComponent implements OnInit {
     status: "Paused"
   };
 
-  @ViewChild('terminal') terminalDiv!: ElementRef;
+ // @ViewChild('terminal') terminalDiv!: ElementRef;
   pwd? : PWD;
 
   constructor() { }
 
   ngOnInit(): void {
-    _window().pwd = new PWD();
-    _window().pwd.newSession([{ selector: ".term1" }],{baseUrl: 'https://pwd.learn.securednow.com',oauthProvider:"portal" },undefined);    
+  }
+  
+  
+  ngAfterViewInit (){
+    this.pwd = new PWD();
+    this.pwd.newSession([{ selector: ".term1" },{ selector: ".term2" }],{baseUrl: 'http://localhost',oauthProvider:"portal" },undefined);    
   }
 
 }
