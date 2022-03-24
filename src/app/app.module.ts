@@ -6,6 +6,8 @@ import { PwdControlComponent } from './pwd-control/pwd-control.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSliderModule } from '@angular/material/slider';
+import { AngularSplitModule } from 'angular-split';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { MatSliderModule } from '@angular/material/slider';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    AngularSplitModule
   ],
   providers: [],
   bootstrap: [AppComponent]
