@@ -20,7 +20,9 @@ import { AngularSplitModule } from 'angular-split';
     MatSliderModule,
     AngularSplitModule
   ],
-  providers: [],
+  providers: [
+    { provide: Window, useValue: window }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
