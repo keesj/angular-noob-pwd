@@ -29,27 +29,49 @@ export class PwdControlComponent implements OnInit {
   };
 
  // @ViewChild('terminal') terminalDiv!: ElementRef;
-  pwd? : PWD;
+  pwd : PWD;
   
-  constructor(private window: Window) { }
+  constructor(private window: Window) { 
+    this.pwd = new PWD();
+  }
 
   ngOnInit(): void {
+   
   }
   
   
   ngAfterViewInit (){
-
-    console.warn("WARN");
-    this.pwd = new PWD();
-
     this.pwd.newSession([{ selector: ".term1" },{ selector: ".term2" }],{baseUrl: 'http://localhost',oauthProvider:"portal" },undefined);   
   }
 
   
+  getProxyUrl(term_index : number, port: number) {
+    return "https://" + this.pwd?.getInstances()[term_index].proxy_host + "-" + port + ".direct." + this.pwd?.opts.baseUrl.split("/")[2];
+  }
+
+  
+  openPort($event: any) {
+   
+    window.open(this.getProxyUrl(0,8000));
+  }
+
+  /*
+  getTermBySelector(selector : any) {
+    this.pwd.getInstances()[0].terms.forEach(element : => {
+      //console.log(element);
+    });
+  }
+  */
+  public startNotebook($event: any) {
+   // getTermBySelector("term1");
+    //this.pwd.getInstances()[0].exec("");
+    this.pwd.getInstances()[0].terms[0].paste("python3 -m http.server\n");
+  }
+
   dragEndHandler($event: IOutputData) {
     console.log('dragEndHandler', { event: $event })
     console.log(this.pwd);
-    this.pwd?.resize();
+    this.pwd.resize();
   }
 
   splitGutterClick({ gutterNum }: IOutputData) {
